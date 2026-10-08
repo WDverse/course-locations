@@ -1,0 +1,22 @@
+/* Course Locations: styles for the [course_locations] shortcode. */
+
+.cl-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	gap: 1rem;
+}
+
+.cl-card {
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 8px;
+	padding: 1rem 1.25rem;
+}
+
+.cl-details {
+	margin-top: 2rem;
+	padding-top: 1rem;
+	border-top: 1px solid rgba(0, 0, 0, 0.15);
+}

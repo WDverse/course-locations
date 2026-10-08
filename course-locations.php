@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+define( 'CL_PATH', plugin_dir_path( __FILE__ ) ); // server path, for require
+define( 'CL_URL', plugin_dir_url( __FILE__ ) ); // Web address of the plugin folder.
+define( 'CL_VERSION', '1.0.0' );
+
+
 // Load each feature from its own file.
 require_once plugin_dir_path( __FILE__ ) . 'includes/post-type.php';
 require_once plugin_dir_path( __FILE__ ) . 'includes/hooks.php';

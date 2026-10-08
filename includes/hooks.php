@@ -15,11 +15,11 @@ function cl_append_location_details( $content ) {
 	$city     = get_post_meta( get_the_ID(), 'cl_city', true );
 	$capacity = get_post_meta( get_the_ID(), 'cl_capacity', true );
 
-	$details  = '<h3>Location Details</h3>';
+	$details  = '<div class="cl-details"><h3>Location Details</h3>';
 	$details .= '<p><strong>Address:</strong> ' . esc_html( $address . ', ' . $city ) . '</p>';
 	$details .= '<p><strong>Capacity:</strong> ' . esc_html( $capacity ) . ' seats</p>';
 
-	return $content . $details; // Original content + our extra bit.
+	return $content . $details . '</div>'; // Original content + our extra bit.
 }
 add_filter( 'the_content', 'cl_append_location_details' );
 
@@ -41,3 +41,14 @@ function cl_admin_column_values( $column, $post_id ) {
 	}
 }
 add_action( 'manage_course_location_posts_custom_column', 'cl_admin_column_values', 10, 2 );
+
+// ACTION: load our stylesheet on the front end.
+function cl_enqueue_assets() {
+	wp_enqueue_style(
+		'course-locations',                      // A unique name for this stylesheet
+		CL_URL . 'assets/styles/course-locations.css',  // Where the file is
+		array(),                                 // Other stylesheets it depends on (none)
+		CL_VERSION                               // Version number
+	);
+}
+add_action( 'wp_enqueue_scripts', 'cl_enqueue_assets' );

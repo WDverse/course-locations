@@ -33,13 +33,13 @@ function cl_shortcode_course_locations( $atts ) {
 	}
 
 	// Build the HTML as a string. Shortcodes must RETURN, not echo.
-	$html = '<ul>';
+	$html = '<ul class="cl-list">';
 	while ( $query->have_posts() ) {
 		$query->the_post();
 		$city     = get_post_meta( get_the_ID(), 'cl_city', true );
 		$capacity = get_post_meta( get_the_ID(), 'cl_capacity', true );
 
-		$html .= '<li>';
+		$html .= '<li class="cl-card">';
 		$html .= '<a href="' . esc_url( get_permalink() ) . '">' . esc_html( get_the_title() ) . '</a>';
 		$html .= ' — ' . esc_html( $city ) . ' (' . esc_html( $capacity ) . ' seats)';
 		$html .= '</li>';
