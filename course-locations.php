@@ -165,3 +165,16 @@ function cl_admin_column_values( $column, $post_id ) {
 	}
 }
 add_action( 'manage_course_location_posts_custom_column', 'cl_admin_column_values', 10, 2 );
+
+// Runs once when the plugin is activated.
+function cl_activate() {
+	cl_register_post_type(); // Make sure WordPress knows about the post type first.
+	flush_rewrite_rules();   // Rebuild the URL list so location pages work.
+}
+register_activation_hook( __FILE__, 'cl_activate' );
+
+// Runs once when the plugin is deactivated: remove our URLs.
+function cl_deactivate() {
+	flush_rewrite_rules();
+}
+register_deactivation_hook( __FILE__, 'cl_deactivate' );
